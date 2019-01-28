@@ -43,7 +43,6 @@
 #  7. Makefileregeln (Operationen, s.o.)
 #
 
-
 ###############################
 # Figure out host system type #
 ###############################
@@ -111,7 +110,8 @@ X11_INC_DIR = $(QUEST_X11_INC_DIR)
                          # X11-Includeverzeichnis
 X11_LIB_DIR = $(QUEST_X11_LIB_DIR)
                          # X11-Bibliotheksverzeichnis
-LIBDIR = $(QUEST_LIB_DIR)
+
+LIBDIR = ../../lib/$(QUEST_HOSTTYPE)
                          # Verzeichnis der PEV-Library fuer die
                          # Benutzer der PEV (Generator, ...)
 OBJBASEDIR = obj
