@@ -102,7 +102,7 @@ PROFILING = no
 # 2. Pfade und Dateinamen: #
 ############################
 
-INCDIR = $(QUEST_INC_DIR)
+INCDIR = ../../include
                          # Verzeichnis der PEV-Includedateien fuer die
                          # Benutzer der PEV (Generator, ...)
 
@@ -309,6 +309,8 @@ $(OUTPUT): $(OBJS)
 		2>> $(LOGFILE)
 
 all: $(OUTPUT) test
+
+$(OBJS): $(OBJDIR)
 
 $(OBJDIR)/%.o: %.cpp
 	@echo Compiling $< ...
