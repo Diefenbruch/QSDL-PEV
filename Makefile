@@ -310,7 +310,7 @@ $(OUTPUT): $(OBJS)
 
 all: $(OUTPUT) test
 
-$(OBJDIR)/%.o: %.cpp $(OBJDIR)
+$(OBJDIR)/%.o: %.cpp
 	@echo Compiling $< ...
 	$(C++) -c $(CFLAGS) $(TFLAGS) $(DEFINES) $(INCLUDES) $< -o $(OBJDIR)/$(notdir $@) 2>> $(LOGFILE)
 
