@@ -55,6 +55,7 @@ SCRIPT := \
 	case `uname -s` in\
     	Linux)	case `uname -m` in\
 					i?86) echo ix86-linux;;\
+                                        x86_64) echo x86_64-linux;;\
 					arm*) echo arm-linux;;\
 					sparc) echo sparc-linux;;\
 					*) echo unknown-linux;;\
