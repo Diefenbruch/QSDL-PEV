@@ -311,7 +311,7 @@ $(OUTPUT): $(OBJS)
 
 all: $(OUTPUT) test
 
-$(OBJS): $(OBJDIR)
+$(OBJS): | $(OBJDIR)
 
 $(OBJDIR)/%.o: %.cpp
 	@echo Compiling $< ...
@@ -322,27 +322,27 @@ $(OBJBASEDIR):
 		echo Creating $(OBJBASEDIR) ...; \
 		$(MKDIR) $(OBJBASEDIR); fi
 
-$(OBJDIR): $(OBJBASEDIR)
+$(OBJDIR): | $(OBJBASEDIR)
 	@if [ ! \( -d $(OBJDIR) \) ]; then \
 		echo Creating $(OBJDIR) ...; \
 		$(MKDIR) $(OBJDIR); fi
 
-$(LIBDIR): 
+$(LIBDIR):
 	@if [ ! \( -d $(LIBDIR) \) ]; then \
 		echo Creating $(LIBDIR) ...; \
 		$(MKDIR) $(LIBDIR); fi
 
-$(PSDIR): 
+$(PSDIR):
 	@if [ ! \( -d $(PSDIR) \) ]; then \
 		echo Creating $(PSDIR) ...; \
 		$(MKDIR) $(PSDIR); fi
 
-$(INCDIR): 
+$(INCDIR):
 	@if [ ! \( -d $(INCDIR) \) ]; then \
 		echo Creating $(INCDIR) ...; \
 		$(MKDIR) $(INCDIR); fi
 
-$(INCDIR)/PEV: $(INCDIR)
+$(INCDIR)/PEV: | $(INCDIR)
 	@if [ ! \( -d $(INCDIR)/PEV \) ]; then \
 		echo Creating $(INCDIR)/PEV ...; \
 		$(MKDIR) $(INCDIR)/PEV; fi
@@ -350,13 +350,13 @@ $(INCDIR)/PEV: $(INCDIR)
 $(DEPFILE):
 	$(TOUCH) $(DEPFILE)
 
-install-lib: $(OUTPUT) $(LIBDIR)
+install-lib: $(OUTPUT) | $(LIBDIR)
 	@echo Deleting old library from $(LIBDIR) ...
 	-$(RM) $(LIBDIR)/$(OUTPUT)
 	@echo Installing new library in $(LIBDIR) ...
 	$(CP)  $(OUTPUT) $(LIBDIR)
 
-install-includes:  $(HEADERS) $(INCDIR)/PEV
+install-includes:  $(HEADERS) | $(INCDIR)/PEV
 	@echo Deleting old include files from $(INCDIR)/PEV ...
 	-$(RM) $(INCDIR)/PEV/*.h
 	@echo Installing new include files in $(INCDIR)/PEV ...
